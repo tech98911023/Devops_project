@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Trash2, Plus, Calendar, Tag, FileText } from 'lucide-react';
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const fetchTasks = async () => {
-  const res = await fetch("http://127.0.0.1:5000/api/v1/tasks/");
+  const res = await fetch(`${apiUrl}/api/v1/tasks/`);
   const data = await res.json();
   setTasks(data);
 };
@@ -19,7 +21,7 @@ const Homepage = () => {
   const addTask = async (e) => {
   e.preventDefault();
 
-  await fetch("http://127.0.0.1:5000/api/v1/tasks/createTask", {
+  await fetch(`${apiUrl}/api/v1/tasks/createTask`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
