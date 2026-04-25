@@ -17,7 +17,7 @@ class SQLiteConfig:
         try:
             cursor = conn.cursor()
             cursor.execute('''
-                CREATE TABLE IF NOT EXISTS task (
+                CREATE TABLE IF NOT EXISTS tasks (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     description TEXT NOT NULL,
                     category TEXT NOT NULL,

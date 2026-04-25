@@ -17,6 +17,7 @@ app.register_blueprint(task_bp, url_prefix='/api/v1/tasks')
 
 if __name__ == '__main__':
     sqlite_config = SQLiteConfig(app.config['DATABASE'])
+    print(f"Using database at: {app.config['DATABASE']}")  # ✅ log DB path
     conn = sqlite_config.connect()
 
     if conn:
