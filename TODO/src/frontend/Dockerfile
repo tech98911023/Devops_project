@@ -1,11 +1,11 @@
-# Stage 1: Build React app using Node 24
-FROM node:24.15.0 AS build
+FROM node:20
 
 WORKDIR /app
 
 COPY package*.json ./
+
 RUN npm install
 
 COPY . .
 
-CMD [ "npm", "run", "dev" ]
+CMD ["npm","run","dev"]
