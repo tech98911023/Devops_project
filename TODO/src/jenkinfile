@@ -1,0 +1,52 @@
+pipeline {
+
+    agent { label 'parent_vm' }
+
+    parameters {
+
+        string(
+            name: 'GIT_BRANCH',
+            defaultValue: 'dev',
+            description: 'Enter Git Branch Name'
+        )
+        string(
+            name: 'Project_dir',
+            defaultValue: 'TODO',
+            description: 'Enter the project directory'
+        )
+    }
+
+    stages {
+
+        stage('Clean Workspace') {
+
+            steps {
+                cleanWs()
+            }
+        }
+
+        stage('Clone Repository') {
+
+            steps {
+
+                git branch: "${params.GIT_BRANCH}",
+                    credentialsId: 'techno98911023',
+                    url: 'https://github.com/tech98911023/Devops_project.git'
+
+            }
+        }
+
+        stage('Go To Project') {
+
+            steps {
+
+                dir('"${Project_dir}"/src') {
+
+                    sh 'pwd'
+                    sh 'ls -l'
+
+                }
+            }
+        }
+    }
+}
