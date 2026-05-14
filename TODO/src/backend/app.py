@@ -23,5 +23,5 @@ if __name__ == '__main__':
     if conn:
         sqlite_config.create_table(conn)   # ✅ ensure table exists
         conn.close()
-    print(app.url_map)
-    app.run('0.0.0.0', 50000, debug=True)
+        print(app.url_map)
+    app.run('0.0.0.0', 5000, debug=True)
