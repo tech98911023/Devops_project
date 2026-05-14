@@ -5,7 +5,7 @@ services:
     build: ./backend
     container_name: flask-backend
     ports:
-      - "50000:50000"
+      - "5000:5000"
     networks:
       - todo-network
 
