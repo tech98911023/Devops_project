@@ -3,6 +3,7 @@ version: "3.9"
 services:
   backend:
     build: ./backend
+    image: beginner9958/flask-backend:latest
     container_name: flask-backend
     ports:
       - "5000:5000"
@@ -11,6 +12,7 @@ services:
 
   frontend:
     build: ./frontend
+    image: beginner9958/react-frontend:latest
     container_name: react-frontend
     networks:
       - todo-network

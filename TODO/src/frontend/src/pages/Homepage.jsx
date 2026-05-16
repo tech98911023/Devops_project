@@ -10,7 +10,18 @@ import { Trash2, Plus, Calendar, Tag, CheckCircle2, Circle } from 'lucide-react'
  * - Responsive design with custom styling
  */
 
+<<<<<<< HEAD
 const App = () => {
+=======
+const fetchTasks = async () => {
+  const res = await fetch(`http://backend:5000/api/v1/tasks/`);
+  const data = await res.json();
+  setTasks(data);
+};
+
+
+const Homepage = () => {
+>>>>>>> dev
   const [tasks, setTasks] = useState([]);
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
@@ -28,6 +39,7 @@ const App = () => {
     setTasks(initialTasks);
   }, []);
 
+<<<<<<< HEAD
   const addTask = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -35,6 +47,14 @@ const App = () => {
     // Creating the new task object
     const newTask = {
       id: Date.now(),
+=======
+  await fetch(`http://backend:5000/api/v1/tasks/createTask`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+>>>>>>> dev
       description,
       category,
       due_date: dueDate,
@@ -195,4 +215,8 @@ const App = () => {
   );
 };
 
+<<<<<<< HEAD
 export default App;
+=======
+export default Homepage;
+>>>>>>> dev
