@@ -1,4 +1,5 @@
 import logging
+import bcrypt
 from flask import jsonify
 # Ensure this matches where you initialized your MySQLConfig (e.g., from database_setup import db_manager as mysql)
 from config.db import mysql
@@ -47,14 +48,20 @@ def createUser(data):
                     "success": False,
                     "message": "Email already exists"
                 }, 409
+             # Generate salt + hash
+        salt = bcrypt.gensalt()
 
+        hashed_password = bcrypt.hashpw(
+            password.encode('utf-8'),
+            salt
+        )
         # Insert new user
         insert_query = """
         INSERT INTO pusers(username, email, password)
         VALUES(%s, %s, %s)
         """
 
-        cursor.execute(insert_query, (username, email, password))
+        cursor.execute(insert_query, (username, email,  hashed_password.decode('utf-8')))
 
         conn.commit()
 
@@ -103,42 +110,61 @@ def get_all_user():
             cursor.close()
 
 def loginUser(data):
-    """
-    Validates user credentials.
-    """
-    cursor = None
+
     try:
+
         email = data.get('email')
         password = data.get('password')
 
-        if not email or not password:
-            return {"success": False, "message": "Email and password are required"}, 400
-
-        conn = mysql.connection
-        if conn is None:
-            return {"success": False, "error": "Database connection unavailable"}, 500
+        conn = mysql.connect()
 
         cursor = conn.cursor(dictionary=True)
 
-        query = "SELECT id, username, email FROM pusers WHERE email = %s AND password = %s"
-        cursor.execute(query, (email, password))
+        query = """
+        SELECT *
+        FROM pusers
+        WHERE email=%s
+        """
+
+        cursor.execute(query, (email,))
+
         user = cursor.fetchone()
 
-        if user:
+        if not user:
+
+            return {
+                "success": False,
+                "message": "Invalid email or password"
+            }, 401
+
+        stored_hash = user['password']
+
+        # Verify password with salt+hash
+        password_match = bcrypt.checkpw(
+            password.encode('utf-8'),
+            stored_hash.encode('utf-8')
+        )
+
+        if password_match:
+
             return {
                 "success": True,
-                "data": user
-            }
+                "message": "Login successful",
+                "user": {
+                    "id": user['id'],
+                    "username": user['username'],
+                    "email": user['email']
+                }
+            }, 200
 
         return {
             "success": False,
             "message": "Invalid email or password"
-        }
+        }, 401
 
     except Exception as e:
-        logging.error(f"Error in loginUser: {str(e)}")
-        return {"success": False, "error": str(e)}, 500
 
-    finally:
-        if cursor:
-            cursor.close()
+        return {
+            "success": False,
+            "error": str(e)
+        }, 500

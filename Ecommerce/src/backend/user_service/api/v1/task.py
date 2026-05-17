@@ -28,9 +28,9 @@ def login_user_api():
 
     data = request.get_json()
 
-    result = loginUser(data)
+    result, status_code = loginUser(data)
 
     if result['success']:
-        return jsonify(result), 200
+        return jsonify(result), status_code
     else:
-        return jsonify(result), 401
+        return jsonify(result), status_code
