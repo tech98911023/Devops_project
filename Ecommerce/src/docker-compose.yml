@@ -1,0 +1,43 @@
+services:
+  ecommerce_Database:
+    image: mysql:latest
+    container_name: mysql-container
+    hostname: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: microservicedb
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: root123
+    ports:
+      - "3306:3306"
+    networks:
+      - ecommerce-network
+  ecommerce_user_service:
+    build: ./ecommerce_backend/user_service
+    # image: beginner9958/user_service:latest
+    container_name: user_service
+    hostname: user_service
+    ports:
+      - "5000:5000"
+    networks:
+      - ecommerce-network
+    depends_on:
+      - ecommerce_Database
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/v1/tasks/healthcheck"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+  ecommerce_frontend:
+    build: ./ecommerce_frontend
+    # image: beginner9958/react-frontend:latest
+    container_name: frontend
+    hostname: frontend
+    networks:
+      - ecommerce-network
+    ports:
+      - "5173:5173"
+networks:
+  ecommerce-network:
+    driver: bridge

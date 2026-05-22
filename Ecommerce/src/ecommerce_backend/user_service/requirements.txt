@@ -1,0 +1,17 @@
+
+
+bcrypt
+flask==2.3.2
+flask-cors==3.0.10
+Jinja2==3.1.6
+kiwisolver==1.5.0
+MarkupSafe==3.0.3
+mysql-connector-python==9.7.0
+mysqlclient==2.2.8
+pycparser==3.0
+pyparsing==3.3.2
+python-dateutil==2.9.0.post0
+python-dotenv==1.2.2
+six==1.17.0
+sounddevice==0.5.5
+Werkzeug==3.1.8

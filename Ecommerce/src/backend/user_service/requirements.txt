@@ -1,5 +1,0 @@
-Flask
-flask-mysqldb
-flask-cors
-mysql-connector-python=2.0.0
-mysqlclient==2.2.8
