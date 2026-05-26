@@ -37,7 +37,7 @@ const Signup = () => {
     try {
 
       const response = await fetch(
-        "http://localhost:5000/api/v1/tasks/createUser",
+        "http://user_service:5000/api/v1/tasks/createUser",
         {
           method: "POST",
           headers: {
