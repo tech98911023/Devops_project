@@ -62,7 +62,7 @@ const Signup = () => {
 
       } else {
 
-        toast.error(data.message || "Signup Failed");
+        toast.error(data.message || "Database Error");
 
       }
 
