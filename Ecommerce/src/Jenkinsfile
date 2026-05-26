@@ -1,9 +1,12 @@
-pipeline{
-    agent: {label: 'parentvm'}
-    stages{
-        stage("clean the workspace"){
-            steps{
-                 cleanWS();
+pipeline {
+
+    agent { label 'parentvm' }
+    stages {
+
+        stage('Clean Workspace') {
+
+            steps {
+                cleanWs()
             }
         }
     }
