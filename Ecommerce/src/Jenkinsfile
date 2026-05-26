@@ -6,5 +6,19 @@ pipeline{
                  cleanWS();
             }
         }
+        stage("clone the repo"){
+            steps{
+                git branch: 'dev', url: 'https://github.com/tech98911023/Devops_project.git'
+                sh "echo cloning the repo done"
+            }
+        }
+        stage("Go to the project directory"){
+            steps{
+                dir("Ecommerce/src"){
+                    sh "docker-compose up -d"
+                    sh "echo moved to the project directory"
+                }
+            }
+        }
     }
 }
