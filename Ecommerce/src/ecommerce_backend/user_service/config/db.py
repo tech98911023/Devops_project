@@ -9,7 +9,10 @@ MYSQL_HOST = os.getenv('MYSQL_HOST','mysql-container')
 MYSQL_USER = os.getenv('MYSQL_USER','appuser')
 MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD','root123')
 MYSQL_PORT = int(os.getenv('MYSQL_PORT',3306))
-MYSQL_DB = os.getenv('MYSQL_DB','microservicedb')
+MYSQL_DB = os.getenv('MYSQL_DB','microservice_db')
 
+print(f"MYSQL_HOST: {MYSQL_HOST}")
+print(f"MYSQL_USER: {MYSQL_USER}")
+print(f"MYSQL_DB: {MYSQL_DB}")
 # Initialize MySQL Config
 mysql = MySQLConfig(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_PORT, MYSQL_DB)

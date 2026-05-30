@@ -14,7 +14,7 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
-    fullName: "",
+    username: "",
     email: "",
     password: ""
   });
@@ -92,7 +92,7 @@ const Signup = () => {
       </h2>
 
       <Input
-        label="Full Name"
+        label="username"
         name="username"
         value={formData.username}
         onChange={handleChange}

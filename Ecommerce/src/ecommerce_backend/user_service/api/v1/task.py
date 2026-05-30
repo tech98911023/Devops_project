@@ -39,6 +39,7 @@ def login_user_api():
 def db_health():
     try:
         conn = mysql.connect()
+        print(f"Database connection object: {conn}")
         if conn:
             conn.close()
             return jsonify({
