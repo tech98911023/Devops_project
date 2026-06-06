@@ -1,0 +1,15 @@
+{
+  "name": "ats-resume-analyzer",
+  "version": "1.0.0",
+  "description": "AI-powered ATS Resume Analyzer using Claude",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": ["resume", "ats", "analyzer", "claude", "ai"],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
