@@ -22,7 +22,7 @@ phases:
       - echo "$DOCKER_USERNAME"
 
       - echo "Running docker compose..."
-      - docker compose build -t Myapp:0.0.1
+      - docker compose build Myapp:0.0.1
       - docker push myapp:0.0.1
 
   post_build:
