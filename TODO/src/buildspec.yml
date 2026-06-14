@@ -14,7 +14,7 @@ phases:
       - echo "Changing directory..."
       - cd Devops_project/TODO/src
       - echo "Logging into Docker Hub"
-      - echo "$DOCKER_TOKEN" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      - echo "$DOCKER_TOKEN" | docker login -u beginner9958 --password-stdin
       - echo "$DOCKER_USERNAME"
 
       - echo "Running docker compose..."
