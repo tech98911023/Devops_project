@@ -14,6 +14,7 @@ phases:
       - echo "Changing directory..."
       - cd Devops_project/TODO/src
       - echo "Logging into Docker Hub"
+      - test -n "$DOCKER_TOKEN" && echo "Token is set" || echo "Token is EMPTY"
       - echo "$DOCKER_TOKEN" | docker login -u beginner9958 --password-stdin
       - echo "$DOCKER_USERNAME"
 
