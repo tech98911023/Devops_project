@@ -2,7 +2,7 @@
 services:
   backend:
     build: ./backend
-    image: beginner9958/flask-backend:latest
+    image: beginner9958/flask-backend:${TAG}
     container_name: flask-backend
     ports:
       - "5000:5000"
@@ -11,7 +11,7 @@ services:
 
   frontend:
     build: ./frontend
-    image: beginner9958/react-frontend:latest
+    image: beginner9958/react-frontend:${TAG}
     container_name: react-frontend
     networks:
       - todo-network
