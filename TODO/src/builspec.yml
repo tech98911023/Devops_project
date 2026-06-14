@@ -1,0 +1,20 @@
+version: 0.0.0
+
+phases:
+  clean_workspace:
+    commands:
+      - echo "Cleaning workspace..."
+      - rm -rf *
+  clone_repository:
+    commands:
+      - echo "Cloning repository..."
+      - git clone https://github.com/tech98911023/Devops_project.git
+  change_directory:
+    commands:
+      - echo "Changing directory..."
+      - cd Devops_project/TODO/src
+  Run_docker_compose:
+    commands:
+      - echo "Running docker compose..."
+      - docker compose up -d
+      
