@@ -3,6 +3,8 @@ version: 0.2
 env:
   secrets-manager:
     DOCKER_TOKEN: "dockerhub-token:DOCKER_TOKEN"
+  parameter-store:
+    TAG: 0.1
 phases:
   pre_build:
     commands:
