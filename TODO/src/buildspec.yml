@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo "Cleaning workspace..."
+      - rm -rf Devops_project
+
+      - echo "Cloning repository..."
+      - git clone https://github.com/tech98911023/Devops_project.git
+
+  build:
+    commands:
+      - echo "Changing directory..."
+      - cd Devops_project/TODO/src
+
+      - echo "Running docker compose..."
+      - docker compose up -d
+
+  post_build:
+    commands:
+      - echo "Docker compose started successfully"
